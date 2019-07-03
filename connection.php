@@ -19,7 +19,6 @@
 
             session_start();
             $_SESSION["errors"] = "Vous êtes bien connecté !";
-            var_dump($_SESSION["errors"]);
 
         } else {
 

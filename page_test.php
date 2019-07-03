@@ -9,4 +9,4 @@
         header("location: connection.php");
     }
 
-    echo "<p><a href='index.php'>retour</a><p/>";
+    echo "<p><a href='index.php'>retour</a></p>";
