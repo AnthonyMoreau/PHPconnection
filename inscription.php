@@ -1,9 +1,8 @@
 <?php
-
-    $_SESSION["errors"] = [];
     $pattern_pseudo = '/[a-zéèàêûîôëöïüçâA-Z0-9]+/';
+    $_SESSION["error"] = null;
     if(!empty($_POST)){
-        
+        session_start();
         if(!empty($_POST["pseudo"]) and !empty($_POST["email"])){
 
             $pseudo = $_POST["pseudo"];
@@ -22,21 +21,21 @@
                 $verif_email = $verif->fetchAll();
                 if($verif_email[0]->email != null){
 
-                    $_SESSION["errors"][] = "Dsl, cet email est déjà inscrit, Veuillez utiliser une autre adresse mail !";
+                    $_SESSION["errors"] = "Dsl, cet email est déjà inscrit, Veuillez utiliser une autre adresse mail !";
 
                 } else {
                     //INSCRIPTION----------
                     $req = $pdo->prepare("INSERT INTO users SET pseudo= ?, email= ?");
                     $req->execute([$pseudo, $email]);
-                    $_SESSION["errors"][] = "Merci pour votre inscription !";
+                    $_SESSION["errors"] = "Merci pour votre inscription !";
                 }
 
             } else {
-                $_SESSION["errors"][] = "Votre pseudo ou votre email ne semble pas valide !";
+                $_SESSION["errors"] = "Votre pseudo ou votre email ne semble pas valide !";
             }
         } else {
 
-            $_SESSION["errors"][] = "Pour vous inscrire, veuillez remplir tous les champs !";
+            $_SESSION["errors"] = "Pour vous inscrire, veuillez remplir tous les champs !";
         }
     }
 ?>

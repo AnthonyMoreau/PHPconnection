@@ -1,8 +1,6 @@
 <?php 
 
-    $_SESSION["errors"] = null;
-    $_SESSION["auth"] = null;
-        
+    session_start();
     if(!empty($_POST["pseudo"]) and !empty($_POST["email"])){
 
         $pseudo = $_POST["pseudo"];
@@ -18,6 +16,7 @@
         if($result[0]->pseudo === $pseudo && $result[0]->email === $email){    
 
             session_start();
+            $_SESSION["auth"] = "logged";
             $_SESSION["errors"] = "Vous êtes bien connecté !";
 
         } else {
